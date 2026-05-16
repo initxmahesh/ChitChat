@@ -4,7 +4,7 @@ import User from "../models/User.js";
 import Message from "../models/Message.js";
 
 export default function socketHandler(io) {
-  // ── Auth middleware ────────────────────────────────────
+  // Auth middleware
   io.use(async (socket, next) => {
     try {
       const raw = socket.handshake.headers.cookie || "";
@@ -24,11 +24,11 @@ export default function socketHandler(io) {
     }
   });
 
-  // ── Connection ─────────────────────────────────────────
+  // Connection
   io.on("connection", (socket) => {
     const { _id, fullName, username } = socket.user;
 
-    // ── join_room ────────────────────────────────────────
+    // join_room 
     socket.on("join_room", async ({ roomId }) => {
       socket.join(roomId);
       if (!socket.joinedRooms) socket.joinedRooms = new Set();
@@ -52,7 +52,7 @@ export default function socketHandler(io) {
       }
     });
 
-    // ── send_message ─────────────────────────────────────
+    // send_message
     socket.on("send_message", async ({ roomId, text }) => {
       if (!text?.trim()) return;
 
@@ -71,20 +71,20 @@ export default function socketHandler(io) {
       }
     });
 
-    // ── typing_start ─────────────────────────────────────
+    // typing_start
     socket.on("typing_start", ({ roomId }) => {
       if (!socket.typingRooms) socket.typingRooms = new Set();
       socket.typingRooms.add(roomId);
       socket.to(roomId).emit("user_typing", { _id, fullName });
     });
 
-    // ── typing_stop ──────────────────────────────────────
+    // typing_stop
     socket.on("typing_stop", ({ roomId }) => {
       socket.typingRooms?.delete(roomId);
       socket.to(roomId).emit("user_stopped_typing", { _id });
     });
 
-    // ── leave_room ───────────────────────────────────────
+    // leave_room
     socket.on("leave_room", ({ roomId }) => {
       socket.joinedRooms?.delete(roomId);
       socket.typingRooms?.delete(roomId);
@@ -93,7 +93,7 @@ export default function socketHandler(io) {
       socket.leave(roomId);
     });
 
-    // ── disconnect ───────────────────────────────────────
+    // disconnect
     // Fires on browser tab close / network drop — clean up all rooms
     socket.on("disconnect", () => {
       if (socket.typingRooms) {

@@ -5,14 +5,14 @@ import { useAuth } from "../context/useAuth";
 export default function ProfileModal({ onClose }) {
   const { user, updateProfile, deleteAccount } = useAuth();
 
-  // ── Edit profile state ──────────────────────────────────
+  // Edit profile state
   const [fullName, setFullName] = useState(user?.fullName ?? "");
   const [username, setUsername] = useState(user?.username ?? "");
   const [saving, setSaving] = useState(false);
   const [saveError, setSaveError] = useState("");
   const [saved, setSaved] = useState(false);
 
-  // ── Delete account state ────────────────────────────────
+  // Delete account state
   const [showDeleteConfirm, setShowDeleteConfirm] = useState(false);
   const [confirmText, setConfirmText] = useState("");
   const [deleting, setDeleting] = useState(false);
@@ -69,7 +69,7 @@ export default function ProfileModal({ onClose }) {
 
         <h3 className="text-lg font-bold text-gray-900 mb-5">Edit Profile</h3>
 
-        {/* ── Edit form ─────────────────────────────────── */}
+        {/* Edit form */}
         <form onSubmit={handleSave} className="space-y-4">
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-1.5">
@@ -146,7 +146,7 @@ export default function ProfileModal({ onClose }) {
           </button>
         </form>
 
-        {/* ── Danger zone ───────────────────────────────── */}
+        {/* Danger zone */}
         <div className="mt-3 pt-3 border-t border-gray-100">
           {!showDeleteConfirm ? (
             <button
