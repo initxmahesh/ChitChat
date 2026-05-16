@@ -103,6 +103,7 @@ export default function Register() {
                     placeholder="your_username"
                     required
                     maxLength={20}
+                    autoComplete="username"
                     className="w-full pl-11 pr-4 py-3 bg-gray-50 border border-gray-200 rounded-xl text-gray-900 placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-brand-500/30 focus:border-brand-400 focus:bg-white transition-all duration-200"
                   />
                 </div>
@@ -121,6 +122,7 @@ export default function Register() {
                     onChange={(e) => setEmail(e.target.value)}
                     placeholder="name@example.com"
                     required
+                    autoComplete="email"
                     className="w-full pl-11 pr-4 py-3 bg-gray-50 border border-gray-200 rounded-xl text-gray-900 placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-brand-500/30 focus:border-brand-400 focus:bg-white transition-all duration-200"
                   />
                 </div>
@@ -140,6 +142,7 @@ export default function Register() {
                     placeholder="Min. 8 characters"
                     required
                     minLength={8}
+                    autoComplete="new-password"
                     className="w-full pl-11 pr-4 py-3 bg-gray-50 border border-gray-200 rounded-xl text-gray-900 placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-brand-500/30 focus:border-brand-400 focus:bg-white transition-all duration-200"
                   />
                 </div>
