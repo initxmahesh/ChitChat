@@ -1,0 +1,20 @@
+# Dependencies
+node_modules/
+client/node_modules/
+server/node_modules/
+
+# Git
+.git/
+.gitignore
+
+# Build artifacts (built fresh in Docker)
+client/dist/
+server/public/
+
+# Dev / editor files
+.env
+*.env
+.env.*
+.DS_Store
+*.log
+.vscode/

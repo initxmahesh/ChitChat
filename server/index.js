@@ -21,7 +21,7 @@ const app = express();
 const httpServer = http.createServer(app);
 const PORT = process.env.PORT || 5000;
 
-const rawOrigin = process.env.CLIENT_ORIGIN;
+const rawOrigin = process.env.CLIENT_ORIGIN || "http://localhost:5173";
 const origin = rawOrigin.includes(",")
   ? rawOrigin.split(",").map((o) => o.trim())
   : rawOrigin;
